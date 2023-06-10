@@ -1,0 +1,42 @@
+<<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas width="1500" height="900"></canvas>
+
+    <script type="text/javascript">
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+        var colores = ['red', 'yellow', 'black', 'blue', 'orange'];
+        var valoresX = [0, 0, 2, 0, -2];
+        var valoresY = [0, -2, 0, 2, 0];
+
+        function dibujarCirculo(coordX, coordY, radio, color){
+          pincel.fillStyle = color;
+          pincel.beginPath();
+          pincel.arc(coordX, coordY, radio, 0, 2 * 3.14);
+          pincel.fill();
+        }
+
+        function dibujarFlor(ejeX, ejeY, radio){
+          for(var i = 0; i<colores.length; i++){
+            dibujarCirculo(ejeX + valoresX[i] * radio, ejeY + valoresY[i] * radio, radio, colores[i]);
+          }
+        }
+
+        pincel.fillStyle = "pink";
+        pincel.fillRect(0, 0, 1500, 900);
+
+        var ejeX = parseInt(prompt('Indica la coordenada X donde se ubicará el centro de la flor'));
+        var ejeY = parseInt(prompt('Indica la coordenada Y donde se ubicará el centro de la flor'));
+        var radio = parseInt(prompt('Indica el radio de los pétalos de la flor'));
+
+        dibujarFlor(ejeX, ejeY, radio);
+    </script>
+
+  </body>
+</html>
+</HTML>
